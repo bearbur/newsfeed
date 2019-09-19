@@ -7,6 +7,7 @@ const NavBar = styled.div`
     flex-direction: row;
     justify-content: space-between;
     height: 2em;
+    width: 100%;
 `;
 
 
@@ -31,7 +32,6 @@ export default class NavigationBar extends Component {
         return (
             <NavBar>
                 <NavTitle type="button" value="NewsFeed"/>
-                <NavButton type="button" value="Login"/>
                 <NavButton type="button" value="News"/>
                 <NavButton type="button" value="Profile"/>
                 <NavButton type="button" value="Sign"/>
