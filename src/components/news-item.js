@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const Item = styled.div`
     border: 1px solid yellow;
@@ -14,13 +14,13 @@ const Text = styled.span`
     font-weight: light;
 `;
 
- const NewsItem = (props) => {
-     return(
-         <Item >
-             <Title>{props.content.title}</Title>
-             <Text>{props.content.text}</Text>
-         </Item>
-     )
- }
+const NewsItem = (props) => {
+	return(
+		<Item >
+			<Title>{props.content.title}</Title>
+			<Text>{props.content.text}</Text>
+		</Item>
+	);
+};
 
- export default NewsItem;
+export default NewsItem;

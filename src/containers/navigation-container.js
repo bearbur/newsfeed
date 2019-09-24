@@ -1,12 +1,12 @@
-import React, {Component} from 'react';
-import NavigationBar from '../components/navigation-bar';
+import React, {Component} from "react";
+import NavigationBar from "../components/navigation-bar";
 
 export default class NavigationContainer extends Component {
-    componentDidMount() {
+	componentDidMount() {
 
-    }
+	}
 
-    render() {
-        return <NavigationBar />;
-    }
+	render() {
+		return <NavigationBar />;
+	}
 }
