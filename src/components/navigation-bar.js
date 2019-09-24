@@ -11,13 +11,6 @@ const NavBar = styled.div`
     width: 100%;
 `;
 
-const NavTitle = styled.div`
-    border: 1px solid green;
-    height: 100%;
-    font-size: 1em;
-    width: 10em;
-`;
-
 const NavButton = styled.div`
     border: 1px solid red;
     height: 100%;
@@ -34,29 +27,41 @@ const LogoutButton = styled.input`
 	border: none;
 `;
 
-const AuthBlock = styled.div`
+const NavBlock = styled.div`
     background: light-blue;
     width: 25vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`;
+
+const AuthBlock = styled.div`
+    background: pink;
+    padding: 0.1em;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
 `;
 
-const LogInBlock = styled.div`
-    background: pink;
-    padding: 0.1em;
-`;
-
 const NavigationBar = (props) => {
 		return (
 			<NavBar>
-				<NavTitle><Link to="/">NewsFeed</Link></NavTitle>
-				<NavButton><Link to="/news">News</Link></NavButton>
-                <AuthBlock>
-                    {props.auth && <NavButton><Link to="/profile">Profile</Link></NavButton>}
-				    {!props.auth&&<LogInBlock><NavButton><Link to="/auth">Sign In</Link></NavButton></LogInBlock>}
-                    {props.auth&&<NavButton><LogoutButton type="button" value="Sign Out" onClick={()=>props.onLogout()}/></NavButton>}
-                </AuthBlock>
+                <NavBlock>
+                    <NavButton><Link to="/">NewsFeed</Link></NavButton>
+                </NavBlock>
+                <NavBlock>
+				    <NavButton><Link to="/news">News</Link></NavButton>
+                </NavBlock>
+                <NavBlock>
+                    {!props.auth&&<AuthBlock><NavButton><Link to="/auth">Sign In</Link></NavButton></AuthBlock>}
+                    {props.auth && (
+                        <AuthBlock>
+                            <NavButton><Link to="/profile">Profile</Link></NavButton>
+                            <NavButton><LogoutButton type="button" value="Sign Out" onClick={()=>props.onLogout()}/></NavButton>
+                        </AuthBlock>
+                    )}
+                </NavBlock>
 			</NavBar>
 		);
 };
