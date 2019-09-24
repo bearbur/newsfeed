@@ -1,12 +1,18 @@
-import React, {Component} from "react";
+import React from "react";
 import NavigationBar from "../components/navigation-bar";
+import styled from "styled-components";
+import {Consumer} from "../auth/provider";
 
-export default class NavigationContainer extends Component {
-	componentDidMount() {
+const NavigationWrapper = styled.div``;
 
-	}
-
-	render() {
-		return <NavigationBar />;
-	}
+ const NavigationContainer = () => {
+	return (
+		<NavigationWrapper>
+			<Consumer>
+				{({store, actions}) =>
+					(<NavigationBar auth={store.authCorrect} onLogout={()=>actions.onLogout()}/>)}
+			</Consumer>
+		</NavigationWrapper>)
 }
+
+export default NavigationContainer;

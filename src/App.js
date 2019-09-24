@@ -44,9 +44,9 @@ function App() {
 					</Header>
 					<Main>
 						<Route path="/" exact component={NewsContainer}/>
-						<Route path="/news" exact component={NewsContainer}/>
-						<Route path="/profile" exact component={ProfileContainer}/>
-						<Route path="/auth" exact component={LoginFormContainer}/>
+						<Route path="/news" component={NewsContainer}/>
+						<Route path="/profile" component={ProfileContainer}/>
+						<Route path="/auth" component={LoginFormContainer}/>
 					</Main>
 				</Provider>
 			</AppWrapper>

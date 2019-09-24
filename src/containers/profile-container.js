@@ -5,19 +5,21 @@ import {Consumer} from "../auth/provider";
 const ProfileFormWrapper = styled.div`
     background: yellow;
 `;
-function LoginFormContainer() {
+function ProfileContainer() {
 	return (
 		<ProfileFormWrapper>
 			<Consumer>
 				{({ store }) => (
 					store.authCorrect ? (
 						<div>
-							<h1>{"Profile"}!</h1>
+							<h1>Profile</h1>
 						</div>
-					) : Redirect("/")
+					) : (<div>
+							 <Redirect to='/auth' />
+					</div>)
 				)}
 			</Consumer>
 		</ProfileFormWrapper>
 	);
 }
-export default LoginFormContainer;
+export default ProfileContainer;

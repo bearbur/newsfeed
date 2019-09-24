@@ -6,6 +6,9 @@ import LoginForm from  "../components/login-form";
 
 const LoginFormWrapper = styled.div`
     background: yellow;
+    height: 20em;
+    width: 20em;
+    padding: 1em;
 `;
 function LoginFormContainer() {
 	return (
@@ -13,10 +16,16 @@ function LoginFormContainer() {
 			<Consumer>
 				{({ store, actions }) => (
 					store.authCorrect ?
-						Redirect("/login")
+						<Redirect to='/profile' />
 					 : (
 						<div>
-							<LoginForm handleChange={actions.handleChange} onLogin={actions.onLogin} email={store.email} password={store.password}/>
+							<LoginForm
+								handleChange={actions.handleChange}
+								onLogin={actions.onLogin}
+								email={store.email}
+								password={store.password}
+								errorLog={store.error}
+							/>
 						</div>)
 				)}
 			</Consumer>

@@ -1,4 +1,5 @@
 import React, { Component, createContext } from 'react';
+import Constants from '../constants/'
 import {loginRequest, profileRequest, validResponseAuth} from "../helpers/requestsToApi";
 
 const initialState = {
@@ -6,7 +7,8 @@ const initialState = {
         rawProfile: {},
         profile: {},
         email: "",
-        password: ""
+        password: "",
+        error: null
 };
 
 export const Context = createContext({...initialState});
@@ -41,16 +43,44 @@ class AuthProvider extends Component {
                             if(validResponseAuth(r)){
                                     this.setState({
                                             authCorrect: true,
-                                            password: null,
+                                            password: "",
                                             profile: {id: r.data.id}
                                     });
                             }
                             //Login failure
                             else{
-                                    //todo standard error
-
-                                    //todo server error
-
+                                    const informationFromResponse = r.data;
+                                    if(
+                                        informationFromResponse.hasOwnProperty("status")&&
+                                        informationFromResponse.hasOwnProperty("message")&&
+                                        informationFromResponse["status"]==="err"&&
+                                        informationFromResponse["message"]==="wrong_email_or_password"
+                                    ){
+                                            this.setState({
+                                                    authCorrect: false,
+                                                    password: "",
+                                                    error: {
+                                                            message: Constants["messages"]["authIncorrect"]
+                                                    }
+                                            });
+                                    } else if(r.status&&r.status===500){
+                                            this.setState({
+                                                    authCorrect: false,
+                                                    password: "",
+                                                    error: {
+                                                            message: Constants["messages"]["serverError"]
+                                                    }
+                                            });
+                                    } else {
+                                            console.error(r);
+                                            this.setState({
+                                                    authCorrect: false,
+                                                    password: "",
+                                                    error: {
+                                                            message: Constants["messages"]["unKnownError"]
+                                                    }
+                                            });
+                                    }
                             }
                     })
                     .catch( err => {
@@ -58,17 +88,15 @@ class AuthProvider extends Component {
                             this.setState({
                                     authCorrect: false,
                                     password: "",
-                                    email: ""
+                                    error: {
+                                            message: Constants["messages"]["unKnownError"]
+                                    }
                             });
                     });
         };
 
         onLogout = () => {
-                this.setState({
-                        authCorrect: false,
-                        password: "",
-                        email: ""
-                });
+                this.setState(initialState);
         };
 
         readProfile = (id) => {

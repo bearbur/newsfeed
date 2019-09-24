@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -28,19 +28,37 @@ const NavButton = styled.div`
     justify-content: center;
 `;
 
-export default class NavigationBar extends Component {
-	componentDidMount() {
+const LogoutButton = styled.input`
+	background: red;
+	color: white;
+	border: none;
+`;
 
-	}
+const AuthBlock = styled.div`
+    background: light-blue;
+    width: 25vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+`;
 
-	render() {
+const LogInBlock = styled.div`
+    background: pink;
+    padding: 0.1em;
+`;
+
+const NavigationBar = (props) => {
 		return (
 			<NavBar>
 				<NavTitle><Link to="/">NewsFeed</Link></NavTitle>
 				<NavButton><Link to="/news">News</Link></NavButton>
-				<NavButton><Link to="/profile">Profile</Link></NavButton>
-				<NavButton><Link to="/auth">Sign</Link></NavButton>
+                <AuthBlock>
+                    {props.auth && <NavButton><Link to="/profile">Profile</Link></NavButton>}
+				    {!props.auth&&<LogInBlock><NavButton><Link to="/auth">Sign In</Link></NavButton></LogInBlock>}
+                    {props.auth&&<NavButton><LogoutButton type="button" value="Sign Out" onClick={()=>props.onLogout()}/></NavButton>}
+                </AuthBlock>
 			</NavBar>
 		);
-	}
-}
+};
+
+export default NavigationBar;

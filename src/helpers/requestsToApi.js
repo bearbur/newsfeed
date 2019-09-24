@@ -16,7 +16,19 @@ export const loginRequest = async (email, password) => {
 };
 
 export const validResponseAuth = (r) => {
-    return !!(r && r.hasOwnProperty('data') && r.hasOwnProperty('status') && r.data.hasOwnProperty('id') && r.status === 'ok' && typeof r.data.id === 'number');
+    if(
+        r &&
+        r.hasOwnProperty('data') &&
+        r.data.hasOwnProperty('data') &&
+        r.data.hasOwnProperty('status') &&
+        r.data.data.hasOwnProperty('id') &&
+        r.data.status === "ok"
+    ){
+        return true
+    }
+    else{
+        return false
+    }
 };
 
 export const profileRequest = function (id) {
