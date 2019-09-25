@@ -4,11 +4,11 @@ import {loginRequest, profileRequest, validResponseAuth} from "../helpers/reques
 
 const initialState = {
         authCorrect: false,
-        rawProfile: {},
         profile: {},
         email: "",
         password: "",
-        error: null
+        error: null,
+        id: null
 };
 
 export const Context = createContext({...initialState});
@@ -44,7 +44,7 @@ class AuthProvider extends Component {
                                     this.setState({
                                             authCorrect: true,
                                             password: "",
-                                            profile: {id: r.data.id}
+                                            id: r.data.id
                                     });
                             }
                             //Login failure
@@ -101,8 +101,9 @@ class AuthProvider extends Component {
 
         readProfile = (id) => {
                 profileRequest(id).then(profile => {
+                        console.log(profile)
                         this.setState({
-                                rawProfile: profile
+
                         });
                 });
         };

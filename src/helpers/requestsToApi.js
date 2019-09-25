@@ -11,26 +11,24 @@ export const loginRequest = async (email, password) => {
         }
 
     };
-    const loginRequest = await axios(configOfRequest);
-    return loginRequest;
+    const loginRequestResult = await axios(configOfRequest);
+    return loginRequestResult;
 };
 
 export const validResponseAuth = (r) => {
-    if(
-        r &&
+    return !!(r &&
         r.hasOwnProperty('data') &&
         r.data.hasOwnProperty('data') &&
         r.data.hasOwnProperty('status') &&
         r.data.data.hasOwnProperty('id') &&
-        r.data.status === "ok"
-    ){
-        return true
-    }
-    else{
-        return false
-    }
+        r.data.status === "ok");
 };
 
-export const profileRequest = function (id) {
-
+export const profileRequest = async (id) => {
+    const configOfRequest = {
+        method: 'get',
+        url: `${Constants.urls.profile}/${id}`
+    };
+    const profileDataRequestResult = await axios(configOfRequest);
+    return profileDataRequestResult;
 };

@@ -5,11 +5,20 @@ import {Consumer} from "../auth/provider";
 import LoginForm from  "../components/login-form";
 
 const LoginFormWrapper = styled.div`
-    background: yellow;
     height: 20em;
     width: 20em;
     padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 `;
+
+const loginState = {processing: false};
+const toggleProcessing = () => {
+	const processing = loginState.processing;
+	loginState["processing"] = !processing;
+};
+
 function LoginFormContainer() {
 	return (
 		<LoginFormWrapper>
@@ -19,12 +28,15 @@ function LoginFormContainer() {
 						<Redirect to='/profile' />
 					 : (
 						<div>
+							{loginState.processing=false}
 							<LoginForm
 								handleChange={actions.handleChange}
 								onLogin={actions.onLogin}
 								email={store.email}
 								password={store.password}
 								errorLog={store.error}
+								processing={loginState.processing}
+								toggle={()=>toggleProcessing()}
 							/>
 						</div>)
 				)}

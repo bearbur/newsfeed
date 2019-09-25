@@ -11,32 +11,33 @@ const AppWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    background: #000;
     height: 100vh;
+    background: #000;
     color: #fff;
+    padding: 0;
+    margin: 0;
 `;
 
 const Header = styled.header`
     display: flex;
     flex-direction: column;
+    padding: 0;
+    margin: 0;
+    height: 3em;
 `;
 
 const Main = styled.main`
-    border: 1px solid orange;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0;
+    margin: 0;
+    height: 100%;
 `;
 
-
-
-function App() {
-    
-
+const App = () => {
 	return (
-
 		<Router>
-
 			<AppWrapper>
 				<Provider>
 					<Header>
@@ -53,7 +54,6 @@ function App() {
 
 		</Router>
 	);
-
 }
 
 export default App;

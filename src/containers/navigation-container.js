@@ -3,7 +3,10 @@ import NavigationBar from "../components/navigation-bar";
 import styled from "styled-components";
 import {Consumer} from "../auth/provider";
 
-const NavigationWrapper = styled.div``;
+const NavigationWrapper = styled.div`
+	height: 100%;
+	padding: 0;
+`;
 
  const NavigationContainer = () => {
 	return (

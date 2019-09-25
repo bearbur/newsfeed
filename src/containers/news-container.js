@@ -6,12 +6,15 @@ import LoadingSpinner from "../components/loading-spinner";
 import styled from "styled-components";
 
 const News = styled.div`
-    border: 1px solid blue;
+	margin-top: 3em;
+	padding: 3em;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    width: 70%;
+    width: 2oem;
+    height: 20em;
+    overflow-y: auto;
 `;
 
 function NewsContainer() {

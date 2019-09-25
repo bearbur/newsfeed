@@ -1,22 +1,18 @@
-import React  from "react";
+import React, { useState, useEffect }   from "react";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import {Consumer} from "../auth/provider";
-const ProfileFormWrapper = styled.div`
-    background: yellow;
-`;
+import Profile from "../components/profile";
+const ProfileFormWrapper = styled.div``;
+
 function ProfileContainer() {
 	return (
 		<ProfileFormWrapper>
 			<Consumer>
-				{({ store }) => (
+				{({ store, actions }) => (
 					store.authCorrect ? (
-						<div>
-							<h1>Profile</h1>
-						</div>
-					) : (<div>
-							 <Redirect to='/auth' />
-					</div>)
+						<Profile id={store.id} readProfile={actions.readProfile} />
+					) : <Redirect to='/auth' />
 				)}
 			</Consumer>
 		</ProfileFormWrapper>
