@@ -1,4 +1,4 @@
-import React, { useState, useEffect }   from "react";
+import React from "react";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import {Consumer} from "../auth/provider";
@@ -11,7 +11,7 @@ function ProfileContainer() {
 			<Consumer>
 				{({ store, actions }) => (
 					store.authCorrect ? (
-						<Profile id={store.id} readProfile={actions.readProfile} />
+						<Profile id={store.id} updateProfileInformation={actions.updateProfileInformation} />
 					) : <Redirect to='/auth' />
 				)}
 			</Consumer>

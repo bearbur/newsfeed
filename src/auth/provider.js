@@ -1,14 +1,14 @@
 import React, { Component, createContext } from 'react';
 import Constants from '../constants/'
-import {loginRequest, profileRequest, validResponseAuth} from "../helpers/requestsToApi";
+import {loginRequest, validResponseAuth} from "../helpers/requestsToApi";
 
 const initialState = {
         authCorrect: false,
-        profile: {},
         email: "",
         password: "",
         error: null,
-        id: null
+        id: null,
+        profile: {}
 };
 
 export const Context = createContext({...initialState});
@@ -22,7 +22,7 @@ class AuthProvider extends Component {
                         handleChange: this.handleChange,
                         onLogin: this.onLogin,
                         onLogout: this.onLogout,
-                        readProfile: this.readProfile
+                        updateProfileInformation: this.updateProfileInformation
                 };
         }
 
@@ -44,7 +44,7 @@ class AuthProvider extends Component {
                                     this.setState({
                                             authCorrect: true,
                                             password: "",
-                                            id: r.data.id
+                                            id: r.data.data.id
                                     });
                             }
                             //Login failure
@@ -99,13 +99,8 @@ class AuthProvider extends Component {
                 this.setState(initialState);
         };
 
-        readProfile = (id) => {
-                profileRequest(id).then(profile => {
-                        console.log(profile)
-                        this.setState({
-
-                        });
-                });
+        updateProfileInformation = (profileObject) => {
+                this.setState({profile:profileObject})
         };
 
         render() {

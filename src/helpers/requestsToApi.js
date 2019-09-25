@@ -23,12 +23,3 @@ export const validResponseAuth = (r) => {
         r.data.data.hasOwnProperty('id') &&
         r.data.status === "ok");
 };
-
-export const profileRequest = async (id) => {
-    const configOfRequest = {
-        method: 'get',
-        url: `${Constants.urls.profile}/${id}`
-    };
-    const profileDataRequestResult = await axios(configOfRequest);
-    return profileDataRequestResult;
-};
