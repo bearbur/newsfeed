@@ -69,7 +69,6 @@ const LoginForm = ({processing, email,  password, handleChange, onLogin, toggle,
                             name="email"
                             value={email}
                             onChange={(e)=>{handleChange(e);}}
-                            onBlur={(e)=>{checkEmail(e)}}
                         />
 						<Label>Пароль</Label>
 						<InputCell type = "password" name="password" value={password} onChange={(e)=>handleChange(e)} onKeyDown = {(e)=>{handleKeyDown(e, onLogin);}}/>
