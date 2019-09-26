@@ -1,7 +1,7 @@
 import React from 'react';
 import { object } from 'prop-types';
 import styled from 'styled-components';
-import ProfileSocial from "./profile-social";
+import ProfileSocial from './profile-social';
 
 const ProfileWrapper = styled.div`
     display: flex;
@@ -34,30 +34,33 @@ const SocialBlock = styled.div`
     overflow-x: auto;
 `;
 
-const ProfileBody = ({data}) => {
-
-    const profile = Object.assign({},data);
-    return(
+const ProfileBody = ({ data }) => {
+    const profile = Object.assign({}, data);
+    return (
         <ProfileWrapper>
             <ProfileTitleOfRow>Город: {profile.city}</ProfileTitleOfRow>
             <ProfileTitleOfRow>Знание языков:</ProfileTitleOfRow>
-            {profile.languages && profile.languages.map((language,key)=><ProfileRow key={key}>{language}</ProfileRow>)}
+            {profile.languages &&
+                profile.languages.map((language, key) => <ProfileRow key={key}>{language}</ProfileRow>)}
             <ProfileTitleOfRow>Ссылки:</ProfileTitleOfRow>
             <SocialBlock>
-                {profile.social && profile.social.sort((a,b)=>{
-                    if(a.label === "web" && b.label !== "web"){
-                        return -1
-                    }
-                    else {
-                        return 1
-                    }
-                }).map((soc,key)=>
-                    <div key={key}>
-                        <ProfileSocial data={soc}/>
-                    </div>)}
+                {profile.social &&
+                    profile.social
+                        .sort((a, b) => {
+                            if (a.label === 'web' && b.label !== 'web') {
+                                return -1;
+                            } else {
+                                return 1;
+                            }
+                        })
+                        .map((soc, key) => (
+                            <div key={key}>
+                                <ProfileSocial data={soc} />
+                            </div>
+                        ))}
             </SocialBlock>
         </ProfileWrapper>
-    )
+    );
 };
 
 export default ProfileBody;

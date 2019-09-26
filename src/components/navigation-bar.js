@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 import { func, bool } from 'prop-types';
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const NavBar = styled.div`
     display: flex;
@@ -24,9 +24,9 @@ const NavButton = styled.div`
 `;
 
 const LogoutButton = styled.input`
-	background: red;
-	color: white!important;
-	border: none;
+    background: red;
+    color: white !important;
+    border: none;
 `;
 
 const NavBlock = styled.div`
@@ -47,28 +47,46 @@ const AuthBlock = styled.div`
 `;
 
 const LinkStyle = {
-  textDecoration: 'none',
+    textDecoration: 'none',
     padding: '1em',
     color: 'white'
 };
 
-const NavigationBar = ({onLogout, auth}) => {
-		return (
-			<NavBar>
-                <NavBlock>
-				    <NavButton><Link style={LinkStyle} to="/news">Новости</Link></NavButton>
-                </NavBlock>
-                <NavBlock>
-                    {!auth&&<AuthBlock><NavButton><Link style={LinkStyle}  to="/auth">Войти</Link></NavButton></AuthBlock>}
-                    {auth && (
-                        <AuthBlock>
-                            <NavButton><Link style={LinkStyle}  to="/profile">Профиль</Link></NavButton>
-                            <NavButton><LogoutButton style={LinkStyle}  type="button" value="Выйти" onClick={()=>onLogout()}/></NavButton>
-                        </AuthBlock>
-                    )}
-                </NavBlock>
-			</NavBar>
-		);
+const NavigationBar = ({ onLogout, auth }) => {
+    return (
+        <NavBar>
+            <NavBlock>
+                <NavButton>
+                    <Link style={LinkStyle} to="/news">
+                        Новости
+                    </Link>
+                </NavButton>
+            </NavBlock>
+            <NavBlock>
+                {!auth && (
+                    <AuthBlock>
+                        <NavButton>
+                            <Link style={LinkStyle} to="/auth">
+                                Войти
+                            </Link>
+                        </NavButton>
+                    </AuthBlock>
+                )}
+                {auth && (
+                    <AuthBlock>
+                        <NavButton>
+                            <Link style={LinkStyle} to="/profile">
+                                Профиль
+                            </Link>
+                        </NavButton>
+                        <NavButton>
+                            <LogoutButton style={LinkStyle} type="button" value="Выйти" onClick={() => onLogout()} />
+                        </NavButton>
+                    </AuthBlock>
+                )}
+            </NavBlock>
+        </NavBar>
+    );
 };
 
 export default NavigationBar;

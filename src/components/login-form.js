@@ -1,7 +1,7 @@
-import React  from "react";
+import React from 'react';
 import { bool, string, func, object } from 'prop-types';
-import styled from "styled-components";
-import LoadingSpinner from "../components/loading-spinner";
+import styled from 'styled-components';
+import LoadingSpinner from '../components/loading-spinner';
 
 const SignForm = styled.form`
     display: flex;
@@ -38,47 +38,64 @@ const SignIn = styled.input`
 `;
 
 const ErrorLog = styled.div`
-	display: flex;
-	flex-direction: column;
-	min-height: 3em;
+    display: flex;
+    flex-direction: column;
+    min-height: 3em;
 `;
 
 const ErrorMessage = styled.span`
-	color: pink;
-	font-size: 0.8em;
+    color: pink;
+    font-size: 0.8em;
 `;
 
-const handleKeyDown = (e,onLogin) => {
+const handleKeyDown = (e, onLogin) => {
     if (e.key === 'Enter') {
         onLogin();
     }
 };
 
-const LoginForm = ({processing, email,  password, handleChange, onLogin, toggle, errorLog}) => {
-
-	return (
-			processing ? (
-				<LoadingSpinner/>
-				) :
-				(
-					<SignForm>
-						<Label>Электронная почта</Label>
-						<InputCell
-                            type = "email"
-                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                            name="email"
-                            value={email}
-                            onChange={(e)=>{handleChange(e);}}
-                        />
-						<Label>Пароль</Label>
-						<InputCell type = "password" name="password" value={password} onChange={(e)=>handleChange(e)} onKeyDown = {(e)=>{handleKeyDown(e, onLogin);}}/>
-						<SignIn type = "submit" value="Отправить" onClick = {(e)=>{onLogin(e); toggle();}} />
-						{(errorLog && errorLog["message"] && typeof errorLog["message"] === "string") ? <ErrorLog>
-							<ErrorMessage>{errorLog["message"]}</ErrorMessage>
-						</ErrorLog> : <ErrorLog/>}
-					</SignForm>
-				)
-	);
+const LoginForm = ({ processing, email, password, handleChange, onLogin, toggle, errorLog }) => {
+    return processing ? (
+        <LoadingSpinner />
+    ) : (
+        <SignForm>
+            <Label>Электронная почта</Label>
+            <InputCell
+                type="email"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                name="email"
+                value={email}
+                onChange={e => {
+                    handleChange(e);
+                }}
+            />
+            <Label>Пароль</Label>
+            <InputCell
+                type="password"
+                name="password"
+                value={password}
+                onChange={e => handleChange(e)}
+                onKeyDown={e => {
+                    handleKeyDown(e, onLogin);
+                }}
+            />
+            <SignIn
+                type="submit"
+                value="Отправить"
+                onClick={e => {
+                    onLogin(e);
+                    toggle();
+                }}
+            />
+            {errorLog && errorLog['message'] && typeof errorLog['message'] === 'string' ? (
+                <ErrorLog>
+                    <ErrorMessage>{errorLog['message']}</ErrorMessage>
+                </ErrorLog>
+            ) : (
+                <ErrorLog />
+            )}
+        </SignForm>
+    );
 };
 export default LoginForm;
 

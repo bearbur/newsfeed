@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const LoadingSpinnerWrapper = styled.div`
     width: 100px;
@@ -7,16 +7,11 @@ const LoadingSpinnerWrapper = styled.div`
 `;
 
 const LoadingSpinner = () => {
-	return(
-		<LoadingSpinnerWrapper>
-			<img
-				src="images/spinner.svg"
-				alt="loading..."
-				height="87px"
-				width="100px" />
-		</LoadingSpinnerWrapper>
-
-	);
+    return (
+        <LoadingSpinnerWrapper>
+            <img src="images/spinner.svg" alt="loading..." height="87px" width="100px" />
+        </LoadingSpinnerWrapper>
+    );
 };
 
-export  default LoadingSpinner;
+export default LoadingSpinner;

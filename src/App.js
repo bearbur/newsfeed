@@ -1,12 +1,12 @@
-import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import {Auth}  from "./providers/auth";
-import {News}  from "./providers/news";
-import NavigationContainer from "./containers/navigation-container";
-import NewsContainer from "./containers/news-container";
-import styled from "styled-components";
-import LoginFormContainer from "./containers/login-form-container";
-import ProfileContainer from "./containers/profile-container";
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Auth } from './providers/auth';
+import { News } from './providers/news';
+import NavigationContainer from './containers/navigation-container';
+import NewsContainer from './containers/news-container';
+import styled from 'styled-components';
+import LoginFormContainer from './containers/login-form-container';
+import ProfileContainer from './containers/profile-container';
 
 const AppWrapper = styled.div`
     display: flex;
@@ -38,25 +38,25 @@ const Main = styled.main`
 `;
 
 const App = () => {
-	return (
-		<Router>
-			<AppWrapper>
-				<Auth>
-					<News>
-						<Header>
-							<NavigationContainer/>
-						</Header>
-						<Main>
-							<Route path="/" exact component={NewsContainer}/>
-							<Route path="/news" component={NewsContainer}/>
-							<Route path="/profile" component={ProfileContainer}/>
-							<Route path="/auth" component={LoginFormContainer}/>
-						</Main>
-					</News>
-				</Auth>
-			</AppWrapper>
-		</Router>
-	);
+    return (
+        <Router>
+            <AppWrapper>
+                <Auth>
+                    <News>
+                        <Header>
+                            <NavigationContainer />
+                        </Header>
+                        <Main>
+                            <Route path="/" exact component={NewsContainer} />
+                            <Route path="/news" component={NewsContainer} />
+                            <Route path="/profile" component={ProfileContainer} />
+                            <Route path="/auth" component={LoginFormContainer} />
+                        </Main>
+                    </News>
+                </Auth>
+            </AppWrapper>
+        </Router>
+    );
 };
 
 export default App;

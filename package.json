@@ -35,6 +35,14 @@
     ]
   },
   "devDependencies": {
-    "eslint-plugin-prettier": "^3.1.1"
+    "@babel/preset-env": "^7.4.5",
+    "babel-jest": "^24.8.0",
+    "babel-plugin-import": "^1.11.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "prettier": "^1.16.4",
+    "stylelint": "^9.10.1",
+    "stylelint-config-recommended": "^2.1.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.5.2"
   }
 }

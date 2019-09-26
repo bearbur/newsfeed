@@ -21,18 +21,18 @@ const SocialTitle = styled.span`
 const SocialLogo = styled.a`
     min-height: 30px;
     max-height: 80%;
-    background: ${props => `url("./images/${props["imageUrl"]}")` || "white" };
-    background-repeat: no-repeat;    
+    background: ${props => `url("./images/${props['imageUrl']}")` || 'white'};
+    background-repeat: no-repeat;
     background-position: center;
 `;
 
-const ProfileSocial = ({data}) => {
-    return(
+const ProfileSocial = ({ data }) => {
+    return (
         <Social>
             <SocialTitle>{data.label}</SocialTitle>
-            <SocialLogo href={data.link} target="_blank" imageUrl={`${data.label}.svg`}/>
+            <SocialLogo href={data.link} target="_blank" imageUrl={`${data.label}.svg`} />
         </Social>
-    )
+    );
 };
 
 export default ProfileSocial;

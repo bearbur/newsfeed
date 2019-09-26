@@ -1,38 +1,36 @@
 import React, { Component, createContext } from 'react';
 
 const initialState = {
-        news: []
+    news: []
 };
 
-export const Context = createContext({...initialState});
+export const Context = createContext({ ...initialState });
 
 class NewsProvider extends Component {
+    state = { ...initialState };
 
-        state = {...initialState};
-
-        get actions() {
-                return {
-                        updateNews: this.updateNews
-                };
-        }
-
-        updateNews = news => {
-                this.setState({news: news});
+    get actions() {
+        return {
+            updateNews: this.updateNews
         };
+    }
 
-        render() {
+    updateNews = news => {
+        this.setState({ news: news });
+    };
 
-                return (
-                    <Context.Provider
-                        value={{
-                                store: this.state,
-                                actions: this.actions
-                        }}
-                    >
-                            {this.props.children}
-                    </Context.Provider>
-                );
-        }
+    render() {
+        return (
+            <Context.Provider
+                value={{
+                    store: this.state,
+                    actions: this.actions
+                }}
+            >
+                {this.props.children}
+            </Context.Provider>
+        );
+    }
 }
 
 export const Consumer = Context.Consumer;
