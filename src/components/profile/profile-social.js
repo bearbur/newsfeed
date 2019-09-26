@@ -1,4 +1,5 @@
 import React from 'react';
+import { object } from 'prop-types';
 import styled from 'styled-components';
 
 const Social = styled.div`
@@ -20,7 +21,7 @@ const SocialTitle = styled.span`
 const SocialLogo = styled.a`
     min-height: 30px;
     max-height: 80%;
-    background: ${props => `url("${props["imageUrl"]}")` || "white" };
+    background: ${props => `url("./images/${props["imageUrl"]}")` || "white" };
     background-repeat: no-repeat;    
     background-position: center;
 `;
@@ -35,3 +36,7 @@ const ProfileSocial = ({data}) => {
 };
 
 export default ProfileSocial;
+
+ProfileSocial.propTypes = {
+    data: object.isRequired
+};

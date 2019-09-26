@@ -1,7 +1,7 @@
 import React  from "react";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
-import {Consumer} from "../auth/provider";
+import {Consumer} from "../providers/auth";
 import LoginForm from  "../components/login-form";
 
 const LoginFormWrapper = styled.div`

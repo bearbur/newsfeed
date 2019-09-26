@@ -1,4 +1,5 @@
 import React from "react";
+import { object } from 'prop-types';
 import styled from "styled-components";
 
 const Item = styled.div`
@@ -21,13 +22,17 @@ const Text = styled.span`
     color: #000;
 `;
 
-const NewsItem = (props) => {
+const NewsItem = ({content}) => {
 	return(
 		<Item >
-			<Title>{props.content.title}</Title>
-			<Text>{props.content.text}</Text>
+			<Title>{content.title}</Title>
+			<Text>{content.text}</Text>
 		</Item>
 	);
 };
 
 export default NewsItem;
+
+NewsItem.propTypes = {
+	content: object.isRequired
+};

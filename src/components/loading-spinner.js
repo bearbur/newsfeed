@@ -10,7 +10,7 @@ const LoadingSpinner = () => {
 	return(
 		<LoadingSpinnerWrapper>
 			<img
-				src="spinner.svg"
+				src="images/spinner.svg"
 				alt="loading..."
 				height="87px"
 				width="100px" />

@@ -1,4 +1,5 @@
 import React, {useState, useEffect, Fragment} from "react";
+import { number, func } from 'prop-types';
 import styled from "styled-components";
 import axios from "axios";
 import Constants from "../constants";
@@ -20,33 +21,53 @@ const ProfileTitle = styled.h1`
 `;
 
 const Profile = ({id=0, updateProfileInformation }) => {
-
+    const errorWarning = {};
     const urlRequest = Constants.urls.profile + id;
-    const [data, setData] = useState({ profile: {}, errors: {} });
+    const [data, setData] = useState({ profile: {}});
     useEffect(() => {
         const fetchData = async () => {
             const result = await axios(
                 urlRequest
             );
 
-            //todo check on user does not exist
+            errorWarning.message = null;
 
-            updateProfileInformation(result.data.data);
-            setData({profile:result.data.data});
+            if(result.data.status === 'ok'){
+                updateProfileInformation(result.data.data);
+                setData({profile:result.data.data});
+            }
+
+            else if(result.data.status === 'err' && result.data.message === "user_not_found" ){
+                updateProfileInformation({});
+                setData({profile:{}});
+                errorWarning.message = "Пользователь не найден."
+            }
+
+            else {
+                updateProfileInformation({});
+                setData({profile:{}});
+                errorWarning.message = "Неизвестная ошибка."
+            }
         };
         fetchData();
-    },[urlRequest, updateProfileInformation]);
+    },[urlRequest]);
 
     return (
         <ProfileWrapper>
             <ProfileTitle>Профиль</ProfileTitle>
             {
-                !data.profile ? <LoadingSpinner/> : <ProfileBody data={data.profile} />
+                !data.profile ? <LoadingSpinner/> : <ProfileBody data={data.profile } />
             }
             {
-                !data.errors ? <Fragment/> : <ProfileErrors data={data.errors} />
+                !errorWarning.message ? <Fragment/> : <ProfileErrors message={errorWarning.message} />
             }
         </ProfileWrapper>
     );
-}
+};
+
 export default Profile;
+
+Profile.propTypes = {
+    id: number.isRequired,
+    updateProfileInformation: func.isRequired,
+};

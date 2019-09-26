@@ -1,7 +1,7 @@
 import React from "react";
 import NavigationBar from "../components/navigation-bar";
 import styled from "styled-components";
-import {Consumer} from "../auth/provider";
+import {Consumer} from "../providers/auth";
 
 const NavigationWrapper = styled.div`
 	height: 100%;

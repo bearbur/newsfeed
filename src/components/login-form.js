@@ -1,4 +1,5 @@
 import React  from "react";
+import { bool, string, func, object } from 'prop-types';
 import styled from "styled-components";
 import LoadingSpinner from "../components/loading-spinner";
 
@@ -47,28 +48,47 @@ const ErrorMessage = styled.span`
 	font-size: 0.8em;
 `;
 
-//todo handle Enter button
+const handleKeyDown = (e,onLogin) => {
+    if (e.key === 'Enter') {
+        onLogin();
+    }
+};
 
-//todo handle input email and hide Sign in button if incorrect format of email
+const LoginForm = ({processing, email,  password, handleChange, onLogin, toggle, errorLog}) => {
 
-const LoginForm = (props) => {
 	return (
-			props.processing ? (
+			processing ? (
 				<LoadingSpinner/>
 				) :
 				(
 					<SignForm>
 						<Label>Электронная почта</Label>
-						<InputCell type = "email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" name="email" value={props.email} onChange={(e)=>props.handleChange(e)}/>
+						<InputCell
+                            type = "email"
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                            name="email"
+                            value={email}
+                            onChange={(e)=>{handleChange(e);}}
+                            onBlur={(e)=>{checkEmail(e)}}
+                        />
 						<Label>Пароль</Label>
-						<InputCell type = "password" name="password" value={props.password} onChange={(e)=>props.handleChange(e)}/>
-						<SignIn type = "submit" value="Отправить" onClick = {(e)=>{props.onLogin(e); props.toggle();}} />
-						{(props["errorLog"] && props["errorLog"]["message"] && typeof props["errorLog"]["message"] === "string") ? <ErrorLog>
-							{()=>props.toggle()}
-							<ErrorMessage>{props["errorLog"]["message"]}</ErrorMessage>
+						<InputCell type = "password" name="password" value={password} onChange={(e)=>handleChange(e)} onKeyDown = {(e)=>{handleKeyDown(e, onLogin);}}/>
+						<SignIn type = "submit" value="Отправить" onClick = {(e)=>{onLogin(e); toggle();}} />
+						{(errorLog && errorLog["message"] && typeof errorLog["message"] === "string") ? <ErrorLog>
+							<ErrorMessage>{errorLog["message"]}</ErrorMessage>
 						</ErrorLog> : <ErrorLog/>}
 					</SignForm>
 				)
 	);
 };
 export default LoginForm;
+
+LoginForm.propTypes = {
+    processing: bool.isRequired,
+    email: string.isRequired,
+    password: string.isRequired,
+    handleChange: func.isRequired,
+    onLogin: func.isRequired,
+    toggle: func.isRequired,
+    errorLog: object
+};

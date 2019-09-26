@@ -1,4 +1,5 @@
 import React from "react";
+import { func, bool } from 'prop-types';
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -51,18 +52,18 @@ const LinkStyle = {
     color: 'white'
 };
 
-const NavigationBar = (props) => {
+const NavigationBar = ({onLogout, auth}) => {
 		return (
 			<NavBar>
                 <NavBlock>
 				    <NavButton><Link style={LinkStyle} to="/news">Новости</Link></NavButton>
                 </NavBlock>
                 <NavBlock>
-                    {!props.auth&&<AuthBlock><NavButton><Link style={LinkStyle}  to="/auth">Войти</Link></NavButton></AuthBlock>}
-                    {props.auth && (
+                    {!auth&&<AuthBlock><NavButton><Link style={LinkStyle}  to="/auth">Войти</Link></NavButton></AuthBlock>}
+                    {auth && (
                         <AuthBlock>
                             <NavButton><Link style={LinkStyle}  to="/profile">Профиль</Link></NavButton>
-                            <NavButton><LogoutButton style={LinkStyle}  type="button" value="Выйти" onClick={()=>props.onLogout()}/></NavButton>
+                            <NavButton><LogoutButton style={LinkStyle}  type="button" value="Выйти" onClick={()=>onLogout()}/></NavButton>
                         </AuthBlock>
                     )}
                 </NavBlock>
@@ -71,3 +72,8 @@ const NavigationBar = (props) => {
 };
 
 export default NavigationBar;
+
+NavigationBar.propTypes = {
+    onLogout: func.isRequired,
+    auth: bool.isRequired
+};

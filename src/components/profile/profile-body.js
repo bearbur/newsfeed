@@ -1,4 +1,5 @@
 import React from 'react';
+import { object } from 'prop-types';
 import styled from 'styled-components';
 import ProfileSocial from "./profile-social";
 
@@ -33,9 +34,9 @@ const SocialBlock = styled.div`
     overflow-x: auto;
 `;
 
-const ProfileBody = (props) => {
-    console.log(props);
-    const profile = props.data;
+const ProfileBody = ({data}) => {
+
+    const profile = Object.assign({},data);
     return(
         <ProfileWrapper>
             <ProfileTitleOfRow>Город: {profile.city}</ProfileTitleOfRow>
@@ -60,3 +61,7 @@ const ProfileBody = (props) => {
 };
 
 export default ProfileBody;
+
+ProfileBody.propTypes = {
+    data: object.isRequired
+};
