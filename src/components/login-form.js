@@ -2,7 +2,7 @@ import React  from "react";
 import styled from "styled-components";
 import LoadingSpinner from "../components/loading-spinner";
 
-const SignForm = styled.div`
+const SignForm = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -49,6 +49,8 @@ const ErrorMessage = styled.span`
 
 //todo handle Enter button
 
+//todo handle input email and hide Sign in button if incorrect format of email
+
 const LoginForm = (props) => {
 	return (
 			props.processing ? (
@@ -56,11 +58,11 @@ const LoginForm = (props) => {
 				) :
 				(
 					<SignForm>
-						<Label>Email</Label>
-						<InputCell type = "text" name="email" value={props.email} onChange={(e)=>props.handleChange(e)}/>
-						<Label>Password</Label>
+						<Label>Электронная почта</Label>
+						<InputCell type = "email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" name="email" value={props.email} onChange={(e)=>props.handleChange(e)}/>
+						<Label>Пароль</Label>
 						<InputCell type = "password" name="password" value={props.password} onChange={(e)=>props.handleChange(e)}/>
-						<SignIn type = "button" value="Sign In" onClick = {(e)=>{props.onLogin(e); props.toggle();}} />
+						<SignIn type = "submit" value="Отправить" onClick = {(e)=>{props.onLogin(e); props.toggle();}} />
 						{(props["errorLog"] && props["errorLog"]["message"] && typeof props["errorLog"]["message"] === "string") ? <ErrorLog>
 							{()=>props.toggle()}
 							<ErrorMessage>{props["errorLog"]["message"]}</ErrorMessage>

@@ -13,6 +13,11 @@ const LoginFormWrapper = styled.div`
     justify-content: center;
 `;
 
+const LoginTitle = styled.h1`
+	    font-size: 2em;	
+	    padding: 1em;
+`;
+
 const loginState = {processing: false};
 const toggleProcessing = () => {
 	const processing = loginState.processing;
@@ -22,6 +27,9 @@ const toggleProcessing = () => {
 function LoginFormContainer() {
 	return (
 		<LoginFormWrapper>
+			<LoginTitle>
+				Авторизуйтесь
+			</LoginTitle>
 			<Consumer>
 				{({ store, actions }) => (
 					store.authCorrect ?

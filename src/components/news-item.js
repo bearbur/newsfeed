@@ -3,9 +3,12 @@ import styled from "styled-components";
 
 const Item = styled.div`
    	padding: 1em;
+   	margin-top: 1em;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background: #fff;
+	border-radius: 1em; 
 `;
 const Title = styled.span`
     font-size: 1.2em;
@@ -15,6 +18,7 @@ const Title = styled.span`
 `;
 const Text = styled.span`
     font-weight: light;
+    color: #000;
 `;
 
 const NewsItem = (props) => {

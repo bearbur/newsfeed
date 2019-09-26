@@ -11,7 +11,7 @@ const NewsWrapper = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 70vw;
+    width: 90vw;
     height: 80vh;
 `;
 
@@ -19,6 +19,9 @@ const News = styled.div`
 	min-height: 60vh;
 	overflow-y: auto;
 	padding: 1em;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
 `;
 
 const NewsTitle = styled.h1`
