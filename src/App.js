@@ -23,7 +23,7 @@ const Header = styled.header`
     flex-direction: column;
     padding: 0;
     margin: 0;
-    height: 3em;
+    min-height: 4em;
 `;
 
 const Main = styled.main`

@@ -9,6 +9,8 @@ const NavBar = styled.div`
     height: 100%;
     width: 100%;
     padding: 0;
+    background: #3480eb;
+    color: white;
 `;
 
 const NavButton = styled.div`
@@ -45,15 +47,13 @@ const AuthBlock = styled.div`
 
 const LinkStyle = {
   textDecoration: 'none',
-    padding: '1em'
+    padding: '1em',
+    color: 'white'
 };
 
 const NavigationBar = (props) => {
 		return (
 			<NavBar>
-                <NavBlock>
-                    <NavButton><Link style={LinkStyle} to="/">NewsFeed</Link></NavButton>
-                </NavBlock>
                 <NavBlock>
 				    <NavButton><Link style={LinkStyle} to="/news">Новости</Link></NavButton>
                 </NavBlock>

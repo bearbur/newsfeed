@@ -8,7 +8,10 @@ const Item = styled.div`
     justify-content: space-between;
 `;
 const Title = styled.span`
-    font-weight: bold;
+    font-size: 1.2em;
+	    font-weight: bolder;
+	    color: #3480eb;	
+	    padding: 1em;
 `;
 const Text = styled.span`
     font-weight: light;

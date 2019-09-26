@@ -47,6 +47,8 @@ const ErrorMessage = styled.span`
 	font-size: 0.8em;
 `;
 
+//todo handle Enter button
+
 const LoginForm = (props) => {
 	return (
 			props.processing ? (

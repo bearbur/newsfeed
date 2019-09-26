@@ -7,7 +7,7 @@ import ProfileBody from "./profile/profile-body";
 import ProfileErrors from "./profile/profile-errors";
 
 const ProfileWrapper = styled.div`
-    width: 20em;
+    width: 90vw;
     height: 30em;
     margin-top: 3em;
     display: flex;
@@ -28,6 +28,8 @@ const Profile = ({id=0, updateProfileInformation }) => {
             const result = await axios(
                 urlRequest
             );
+
+            //todo check on user does not exist
 
             updateProfileInformation(result.data.data);
             setData({profile:result.data.data});

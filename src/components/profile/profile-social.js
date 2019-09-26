@@ -5,28 +5,31 @@ const Social = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    height: 7em;
-    border-top: 1px solid gray;
+    height: 100%;
+    min-width: 10px;
+    min-height: 50px;
 `;
 
 const SocialTitle = styled.span`
-    height: 2em;
-    width: 5em;
+    height: 20%;
+    width: 100%;
     font-weight: bold;
-    border: 1px solid #000;
+    padding-bottom: 1em;
 `;
 
 const SocialLogo = styled.a`
-    border: 1px solid gray;
-    height: 5em;
-    width: 5em;
+    min-height: 30px;
+    max-height: 80%;
+    background: ${props => `url("${props["imageUrl"]}")` || "white" };
+    background-repeat: no-repeat;    
+    background-position: center;
 `;
 
 const ProfileSocial = ({data}) => {
     return(
         <Social>
             <SocialTitle>{data.label}</SocialTitle>
-            <SocialLogo href={data.link} target="_blank"/>
+            <SocialLogo href={data.link} target="_blank" imageUrl={`${data.label}.svg`}/>
         </Social>
     )
 };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, Fragment} from "react";
 import axios from "axios";
 import Constants from "../constants";
 import NewsItem from "../components/news-item";
@@ -12,8 +12,13 @@ const NewsWrapper = styled.div`
     justify-content: flex-start;
     align-items: center;
     width: 70vw;
-    height: 20em;
-    overflow-y: auto;
+    height: 80vh;
+`;
+
+const News = styled.div`
+	min-height: 60vh;
+	overflow-y: auto;
+	padding: 1em;
 `;
 
 const NewsTitle = styled.h1`
@@ -30,6 +35,9 @@ function NewsContainer() {
 			);
 			setData({news:result.data.data});
 		};
+
+		//todo put to store
+
 		fetchData();
 	}, []);
 	return (
@@ -39,7 +47,16 @@ function NewsContainer() {
 				Новости
 			</NewsTitle>
 			{
-				data.news.length === 0 ? <LoadingSpinner/> : data.news.map((contentOfNews,indexNews)=><NewsItem key={indexNews}  content={contentOfNews}/>)
+				data.news.length === 0 ? <LoadingSpinner/> : (
+					<Fragment>
+						<News>
+							{data.news.map((contentOfNews,indexNews)=><NewsItem key={indexNews}  content={contentOfNews}/>)}
+						</News>
+						<Fragment>
+							<span>Всего новостей: {data.news.length}.</span>
+						</Fragment>
+					</Fragment>
+					)
 			}
 		</NewsWrapper>
 	);
